@@ -1,8 +1,8 @@
 # !/bin/zsh
 
 assert(){
-   gcc -Wall -o main src/main.c
-   ./main $1
+   gcc -Wall -o ELF/main src/main.c
+   ./ELF/main $1
 }
 
 
