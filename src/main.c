@@ -3,12 +3,14 @@
 #include <string.h>
 
 void check_domain(char *mail){
-    char *str = strtok(mail, "@");
-    if(strcmp(*str[1],"gmail.com")==0){
+    //文字列をlocalportとdomainに分割
+    char *localport = strtok(mail, "@");
+    char *domain = strtok(NULL, "@");
+    if(strcmp(domain,"gmail.com")==0){
         printf("これはGmailのメールアドレスです\n");
         //サニタイズの処理を実装
     }
-    else{
+    else{ 
         printf("これはその他のメールアドレスです\n");
         //サニタイズの処理を実装
     }
