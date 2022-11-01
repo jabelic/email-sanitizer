@@ -14,6 +14,6 @@ test: sanitizer
 		./test/test.sh
 
 clean:
-		rm -f *.o *~ tmp*
+		rm -f */*.o
 
 .PHONY: test clean
