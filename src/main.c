@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "define.h"
+#include "include/constant.h"
+// #include "include/sanitizer.h"
 
 int check_localport_gmail(char * localport){
     //6文字から30文字の間であることを確認
@@ -93,6 +94,14 @@ int check_domain(char *mail){
         printf("これはGmailのメールアドレスです\n");
         res = check_localport_gmail(localport);
         return res;
+    }else if(strcmp(domain,YAHOO_GENERAL_DOMAIN) == 0){
+        printf("これはYahoo!Japan(co.jp)のメールアドレスです\n");
+        // validate_localport_for_general_yahoo(localport);
+        return *mail;
+    }
+    else if(strcmp(domain,YAHOO_NEW_DOMAIN) == 0){
+        printf("これはYahoo!Japan(ne.jp)のメールアドレスです\n");
+        return *mail;
     }
     else{ 
         printf("これはその他のメールアドレスです\n");

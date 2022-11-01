@@ -1,12 +1,16 @@
-CFLAGS=-std=c99 -g -static
-SRCS=$(wildcard *.c)
-OBJS=$(SRCS:.c=.o)
+SUFFIX=.c
+INCLUDE=include
+SRCDIR := src
+INCDIR := -I $(wildcard $(SRCDIR)/$(INCLUDE)/*.h)
+CFLAGS=-std=c11 -g -O2 -Wall $(INCDIR)
+CC = cc
+YAHOO := yahoo
+SRCS := $(wildcard $(SRCDIR)/*.c) $(wildcard $(SRCDIR)/$(YAHOO)/*.c)
 
-# 9cc: $(OBJS)
-# 		 $(CC) -o 9cc $(OBJS) $(LDFLAGS)
-# $(OBJS): 9cc.h
+sanitizer:
+		$(CC) $(CFLAGS) $(SRCS)
 
-test: 
+test: sanitizer
 		./test/test.sh
 
 clean:
