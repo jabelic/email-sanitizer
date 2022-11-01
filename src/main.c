@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "define.h"
 
 int check_localport_gmail(char * localport){
     //6文字から30文字の間であることを確認
     int len = strlen(localport);
-    if (len < 6 || 30 < len )
+    if (len < GMAIL_MIN_LENGTH || GMAIL_MAX_LENGTH < len )
     {
         printf("6文字から30文字の間で設定する必要があります\n");
         return 1;
@@ -14,7 +15,7 @@ int check_localport_gmail(char * localport){
     
     //使用不可の記号が利用されていないことを確認（ブラックリスト方式）
     //参考：https://www.jpcert.or.jp/sc-rules/c-str02-c.html
-    static char ng_chars[] = "&=_'-+,<>"; 
+    const char ng_chars[] = "&=_'-+,<>"; 
     for (int i = 0; i < sizeof(ng_chars); i++) 
     {
         for (int j = 0; j < len; j++) 
@@ -29,7 +30,7 @@ int check_localport_gmail(char * localport){
 
     //半角英字、数字、ピリオドのみで構成されていること確認（ホワイトリスト方式）
     //参考：https://www.jpcert.or.jp/sc-rules/c-str02-c.html
-    static char ok_chars[] = "abcdefghijklmnopqrstuvwxyz"
+    const char ok_chars[] = "abcdefghijklmnopqrstuvwxyz"
                              "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                              "1234567890.";
     for (int i = 0; i < len; i++) 
