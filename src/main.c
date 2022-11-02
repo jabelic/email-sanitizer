@@ -94,33 +94,29 @@ int check_domain(char *mail){
         printf("これはGmailのメールアドレスです\n");
         res = check_localport_gmail(localport);
         return res;
-    }else if(strcmp(domain,YAHOO_GENERAL_DOMAIN) == 0){
-        printf("これはYahoo!Japan(co.jp)のメールアドレスです\n");
+    }
+    else if(strcmp(domain,YAHOO_GENERAL_DOMAIN) == 0)
+    {
+        /** Yahoo!Japan(co.jp) */
+        // printf("これはYahoo!Japan(co.jp)のメールアドレスです\n");
         if(validate_localport_for_general_yahoo(localport)!=0) return 1; // FAIL
-        return *mail;
+        return 0;
     }
-    else if(strcmp(domain,YAHOO_NEW_DOMAIN) == 0){
-        printf("これはYahoo!Japan(ne.jp)のメールアドレスです\n");
-        return *mail;
+    else if(strcmp(domain,YAHOO_NEW_DOMAIN) == 0)
+    {
+        /** Yahoo!Japan(ne.jp) */
+        // printf("これはYahoo!Japan(ne.jp)のメールアドレスです\n");
+        return 0;
     }
-    else{ 
+    else
+    { 
         printf("これはその他のメールアドレスです\n");
     }
     return res;
 }
 
 int main(int argc, char *argv[]){
-    char *string;
-    int const SIZE = 100;
-    string = (char *)calloc(SIZE,sizeof(char)); // 1byte * SIZE分のメモリを確保
-    fprintf(stdout, "%s", argv[1]);
-
-    if (check_domain(argv[1]) == 1)
-    {
-        return 1;
-    }
-    
-    fprintf(stdout, "%s", string);
-    return 0;
+    if (check_domain(argv[1]) == 0) return 0;
+    return 1;
 }
 

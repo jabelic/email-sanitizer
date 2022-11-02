@@ -8,9 +8,9 @@ assert(){
 
    if [ "$?" -eq "0" ]
    then
-      echo ">SUCCESS"
+      echo ">SUCCESS\n"
    else 
-      echo ">FAIL"
+      echo ">FAIL\n"
    fi
 }
 
@@ -32,14 +32,14 @@ assert(){
 # # 4～31文字の半角英数字、記号（ _ ）が使える。先頭の文字は必ず英字。
 # # おそらく末尾に記号（ _ ）は使えない
 assert "hoge@yahoo.co.jp"      #SUCCESS  
-assert "hogE@yahoo.co.jp"      #SUCCESS  
+assert "hogE@yahoo.co.jp"      #SUCCESS 
 assert "hoge_123_huga@yahoo.co.jp" #SUCCESS  
 assert "email436287489143fofhdsjfkhsjfhABC@yahoo.co.jp"     #FAIL  ローカル部(ID)は4～31文字で構成される。
-# assert "tmp@yahoo.co.jp"       #FAIL     ローカル部(ID)は4～31文字で構成される。
-# assert "t1p@yahoo.co.jp"       #FAIL     ローカル部(ID)は4～31文字で構成される。
-# assert "1hoge@yahoo.co.jp"     #FAIL     最初の文字は数字、記号ではなく必ずアルファベットにする。
-assert "hoge<->@yahoo.co.jp"     #FAIL     半角英数字、記号（ _ ）が使える
-# # assert "hoge_@yahoo.co.jp"     #FAIL?
+assert "tmp@yahoo.co.jp"       #FAIL     ローカル部(ID)は4～31文字で構成される。
+assert "t1p@yahoo.co.jp"       #FAIL     ローカル部(ID)は4～31文字で構成される。
+assert "1hoge@yahoo.co.jp"     #FAIL     最初の文字は数字、記号ではなく必ずアルファベットにする。
+assert "hoge<->@yahoo.co.jp"   #FAIL     半角英数字、記号（ _ ）が使える
+assert "hoge_@yahoo.co.jp"     #FAIL
 
 # ymail.ne.jp
 # 使用可能な文字：半角小文字英数字、「\_」（アンダーバー)、「.」(ドット)、「-」（ハイフン）
