@@ -55,7 +55,7 @@ int check_localport_gmail(char * localport){
     //先頭にピリオドが含まれていないことを確認
     if (localport[0] == '.')
     {
-        printf("最初の文字は半角英字(a-z)または数字(0-9)にする必要があります");
+        printf("最初の文字は半角英字(a-z)または数字(0-9)にする必要があります\n");
         return 1;
     }
     
@@ -119,7 +119,16 @@ int check_domain(char *mail){
 }
 
 int main(int argc, char *argv[]){
-    if (check_domain(argv[1]) == 0) return 0;
+    
+    /** dev mode のときはunittestを走らせる　*/
+    // FIXME: "-dev"を定数にする
+
+    if(argv != NULL && argv[1] != NULL && strcmp(argv[1], "-dev") == 0){
+        int is_passed = unittest();
+        if(is_passed!=0) return 1;
+        else{ return 0; }
+    }
+    else if (argv != NULL && argv[1] != NULL && check_domain(argv[1]) == 0) return 0;
     else{
         return 1;
     }

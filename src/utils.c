@@ -18,3 +18,6 @@ int* chars_map_to_ints(int (*func)(char), char *array, size_t len) {
     for (i = 0; i < len; i++) flags[i] = func(array[i]);
     return flags;
 }
+
+
+int add(int arg1, int arg2){ return arg1+arg2; };
