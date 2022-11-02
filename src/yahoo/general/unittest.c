@@ -15,7 +15,7 @@ int describe_for_is_valid_length() {
     /** test: 引数localportが有効な長さで構成されているかどうかを返す　*/
     char testcases[][GENERAL_YAHOO_MAX_LENGTH + 5] = {
         "hogehuga", "ema", "email436287489143fofhdsjfkhsjfhA"};
-    int expected[] = {0, 1, 1};
+    const int expected[] = {0, 1, 1};
     const int CASES = 3;
 
     /** unit test 実行 */
@@ -35,7 +35,7 @@ int describe_for_is_valid_length() {
 int describe_for_find_char_in_available_chars() {
     /** test: 引数cが有効な文字のうちのどれかであるかどうかを返す */
     char testcases[][2] = {"A", "a", "_", "]", "."};
-    int expected[] = {0, 0, 0, 1, 1};
+    const int expected[] = {0, 0, 0, 1, 1};
     const int CASES = 5;
 
     /** unit test 実行 */
@@ -57,7 +57,7 @@ int describe_for_get_is_valid_head_char() {
     char testcases[][GENERAL_YAHOO_MAX_LENGTH] = {"hgoehuga",     "Abcdefg",
                                                   "0123hogehuga", "_hogehuga",
                                                   "-hogehuga",    ".hogehuga"};
-    int expected[] = {0, 0, 1, 1, 1, 1};
+    const int expected[] = {0, 0, 1, 1, 1, 1};
     const int CASES = 6;
 
     /** unit test 実行 */
@@ -79,7 +79,7 @@ int describe_for_get_is_valid_tail_char() {
     char testcases[][GENERAL_YAHOO_MAX_LENGTH] = {"hgoehuga",     "abcdefA",
                                                   "hogehuga0123", "hogehuga_",
                                                   "hogehuga=",    "hogehuga."};
-    int expected[] = {0, 0, 0, 1, 1, 1};
+    const int expected[] = {0, 0, 0, 1, 1, 1};
     const int CASES = 6;
 
     /** unit test 実行 */
