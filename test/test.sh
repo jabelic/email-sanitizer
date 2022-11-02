@@ -31,14 +31,14 @@ unittest "-dev"
 # ===== 総合テスト =====
 
 # #Gmailのテスト
-# assert 0 "email.1@gmail.com"    #SUCCESS 半角英字、数字、ピリオドを使用できる
-# assert 1 "email..1@gmail.com"   #FAIL ピリオドは連続して使用してはいけない
-# assert 1 "email...1@gmail.com"  #FAIL ピリオドは連続して使用してはいけない
-# assert 1 ".email1@gmail.com"    #FAIL ユーザー名の最初の文字はASCII文字(a-z)または数字(0-9)にする必要がある
-# assert 1 "ema=il1@gmail.com"    #FAIL ユーザー名には＆、=、_、'、-、+、,、<>、を使用することはできない
-# assert 1 "12345>@gmail.com"     #FAIL ユーザー名には＆、=、_、'、-、+、,、<>、を使用することはできない
-# assert 1 "12345@gmail.com"      #FAIL 6文字から30文字の間で設定する必要がある
-# assert 1 "email436287489143fofhdsjfkhsjfh@gmail.com" #FAIL 6文字から30文字の間で設定する必要がある
+assert 0 "email.1@gmail.com"    #SUCCESS 半角英字、数字、ピリオドを使用できる
+assert 1 "email..1@gmail.com"   #FAIL ピリオドは連続して使用してはいけない
+assert 1 "email...1@gmail.com"  #FAIL ピリオドは連続して使用してはいけない
+assert 1 ".email1@gmail.com"    #FAIL ユーザー名の最初の文字はASCII文字(a-z)または数字(0-9)にする必要がある
+assert 1 "ema=il1@gmail.com"    #FAIL ユーザー名には＆、=、_、'、-、+、,、<>、を使用することはできない
+assert 1 "12345>@gmail.com"     #FAIL ユーザー名には＆、=、_、'、-、+、,、<>、を使用することはできない
+assert 1 "12345@gmail.com"      #FAIL 6文字から30文字の間で設定する必要がある
+assert 1 "email436287489143fofhdsjfkhsjfh@gmail.com" #FAIL 6文字から30文字の間で設定する必要がある
 
 
 # # yahoo.co.jp
@@ -70,4 +70,4 @@ assert 1 "hoge_@yahoo.co.jp"     #FAIL     末尾にアンダーバー( _ )は�
 # assert 1 "-huga_123@ymail.ne.jp"               #FAIL  先頭の文字は半角小文字英数字のみ使用できます
 # assert 1 ".huga_123@ymail.ne.jp"               #FAIL  先頭の文字は半角小文字英数字のみ使用できます
 
-# assert 1 "hoge@yahoo.ne.jp"      #FAIL Y!mobileには非対応
+assert 1 "hoge@yahoo.ne.jp"      #FAIL Y!mobileには非対応

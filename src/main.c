@@ -98,7 +98,6 @@ int check_domain(char *mail){
     else if(strcmp(domain,YAHOO_GENERAL_DOMAIN) == 0)
     {
         /** Yahoo!Japan(co.jp) */
-        // printf("これはYahoo!Japan(co.jp)のメールアドレスです\n");
         if(validate_localport_for_general_yahoo(localport)!=0) return 1;
         else{
             return 0;
@@ -108,12 +107,12 @@ int check_domain(char *mail){
     else if(strcmp(domain,YAHOO_NEW_DOMAIN) == 0)
     {
         /** Yahoo!Japan(ne.jp) */
-        // printf("これはYahoo!Japan(ne.jp)のメールアドレスです\n");
         return 0;
     }
     else
     { 
-        printf("これはその他のメールアドレスです\n");
+        printf("これは非対応のメールアドレスです\n");
+        return 1;
     }
     return res;
 }

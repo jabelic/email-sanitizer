@@ -68,22 +68,22 @@ int get_is_valid_tail_char(char *localport){
 int validate_localport_for_general_yahoo(char * localport){
     // 文字数
     if(is_valid_length(localport)!=0){
-        fprintf(stderr, "不適合: 文字数は4〜31文字が有効です。\n");
+        fprintf(stderr, "ERROR: 文字数は4〜31文字が有効です。\n");
         return 1;
     }
     // 構成文字
     else if(get_is_valid_chars(localport)!=0){
-        fprintf(stderr, "不適合: 有効な文字列を使ってください。\n");
+        fprintf(stderr, "ERROR: 有効な文字列を使ってください。\n");
         return 1;
     }
     // 先頭は英字
     else if(get_is_valid_head_char(localport)!=0){
-        fprintf(stderr, "不適合: 先頭は英字を使用してください。\n");
+        fprintf(stderr, "ERROR: 先頭は英字を使用してください。\n");
         return 1;
     }
     // 末尾はアンダーバー（ _ ）は使えず、半角英数字のみ使える
     else if(get_is_valid_tail_char(localport)!=0){
-        fprintf(stderr, "不適合: 末尾にアンダーバー（ _ ）は使用できません。\n");
+        fprintf(stderr, "ERROR: 末尾にアンダーバー（ _ ）は使用できません。\n");
         return 1;
     }
     else{
