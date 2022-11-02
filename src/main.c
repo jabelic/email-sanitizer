@@ -99,8 +99,11 @@ int check_domain(char *mail){
     {
         /** Yahoo!Japan(co.jp) */
         // printf("これはYahoo!Japan(co.jp)のメールアドレスです\n");
-        if(validate_localport_for_general_yahoo(localport)!=0) return 1; // FAIL
-        return 0;
+        if(validate_localport_for_general_yahoo(localport)!=0) return 1;
+        else{
+            return 0;
+        }
+
     }
     else if(strcmp(domain,YAHOO_NEW_DOMAIN) == 0)
     {
@@ -117,6 +120,8 @@ int check_domain(char *mail){
 
 int main(int argc, char *argv[]){
     if (check_domain(argv[1]) == 0) return 0;
-    return 1;
+    else{
+        return 1;
+    }
 }
 
