@@ -1,7 +1,7 @@
 SUFFIX=.c
 INCLUDE=include
 SRCDIR := src
-INCDIR := -I $(wildcard $(SRCDIR)/$(INCLUDE)/*.h)
+INCDIR := -I $(wildcard $(SRCDIR)/$(INCLUDE))
 CFLAGS=-std=c11 -g -O2 -Wall $(INCDIR)
 CC = cc
 YAHOO := yahoo
