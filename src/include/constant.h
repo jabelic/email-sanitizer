@@ -1,0 +1,10 @@
+#define GMAIL_MIN_LENGTH 6
+#define GMAIL_MAX_LENGTH 30
+
+/** Yahoo!Japan */
+#define YAHOO_GENERAL_DOMAIN "yahoo.co.jp"
+#define YAHOO_NEW_DOMAIN "ymail.ne.jp"
+#define GENERAL_YAHOO_MIN_LENGTH 4
+#define GENERAL_YAHOO_MAX_LENGTH 31
+#define NEW_YAHOO_MIN_LENGTH 3
+#define NEW_YAHOO_MAX_LENGTH 29
