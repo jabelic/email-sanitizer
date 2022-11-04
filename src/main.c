@@ -79,7 +79,11 @@ int check_localport_gmail(char *localport) {
 int check_domain(char *mail) {
     int res = 0;
     //文字列をlocalportとdomainに分割
-    char *localport = strtok(mail, "@");
+    //strtokの使用には下記を参照
+    //https://www.jpcert.or.jp/sc-rules/c-str06-c.html
+    char *copy = (char *)malloc(strlen(mail) + 1);
+    strcpy(copy, mail);
+    char *localport = strtok(copy, "@");
     char *domain = strtok(NULL, "@");
     if (strcmp(domain, "gmail.com") == 0) {
         printf("これはGmailのメールアドレスです\n");
