@@ -88,7 +88,7 @@ int check_domain(char *mail) {
     char *localport = strtok(copy, "@");
     char *domain = strtok(NULL, "@");
 
-    /**早期リターン*/
+    /** domainまたはlocalpostがNULLだった場合は弾く */
     if (domain == NULL || localport == NULL) {
         free_and_NULL_padding(copy);
         return 1;
