@@ -5,6 +5,7 @@
 
 #include "include/constant.h"
 #include "include/sanitizer.h"
+#include "include/utils.h"
 
 int check_localport_gmail(char *localport) {
     // 6文字から30文字の間であることを確認
@@ -78,49 +79,65 @@ int check_localport_gmail(char *localport) {
 
 int check_domain(char *mail) {
     int res = 0;
+
     //文字列をlocalportとdomainに分割
-    //strtokの使用には下記を参照
-    //https://www.jpcert.or.jp/sc-rules/c-str06-c.html
+    // strtokの使用には下記を参照
+    // https://www.jpcert.or.jp/sc-rules/c-str06-c.html
     char *copy = (char *)malloc(strlen(mail) + 1);
     strcpy(copy, mail);
     char *localport = strtok(copy, "@");
     char *domain = strtok(NULL, "@");
+
+    /**早期リターン*/
+    if (domain == NULL || localport == NULL) {
+        free_and_NULL_padding(copy);
+        return 1;
+    }
+    /** Gmail */
     if (strcmp(domain, "gmail.com") == 0) {
         printf("これはGmailのメールアドレスです\n");
         res = check_localport_gmail(localport);
+        free_and_NULL_padding(copy);
         return res;
-    } else if (strcmp(domain, YAHOO_GENERAL_DOMAIN) == 0) {
-        /** Yahoo!Japan(co.jp) */
-        if (validate_localport_for_general_yahoo(localport) != 0)
+    }
+    /** Yahoo!Japan(co.jp) */
+    else if (strcmp(domain, YAHOO_GENERAL_DOMAIN) == 0) {
+        if (validate_localport_for_general_yahoo(localport) != 0) {
+            free_and_NULL_padding(copy);
             return 1;
-        else {
+        } else {
+            free_and_NULL_padding(copy);
             return 0;
         }
-
-    } else if (strcmp(domain, YAHOO_NEW_DOMAIN) == 0) {
-        /** Yahoo!Japan(ne.jp) */
+    }
+    /** Yahoo!Japan(ne.jp) */
+    else if (strcmp(domain, YAHOO_NEW_DOMAIN) == 0) {
+        printf("Yahoo!Japan(ne.jp)のメールアドレスは未対応です。");
+        free_and_NULL_padding(copy);
         return 0;
     } else {
         printf("これは非対応のメールアドレスです\n");
+        free_and_NULL_padding(copy);
         return 1;
     }
+    free_and_NULL_padding(copy);
+
     return res;
 }
 
 int main(int argc, char *argv[]) {
     /** dev mode のときはunittestを走らせる　*/
     // FIXME: "-dev"を定数にする
-
     if (argv != NULL && argv[1] != NULL && strcmp(argv[1], "-dev") == 0) {
         int is_passed = unittest();
-        if (is_passed != 0)
+        if (is_passed != 0) {
             return 1;
-        else {
+        } else {
             return 0;
         }
-    } else if (argv != NULL && argv[1] != NULL && check_domain(argv[1]) == 0)
+    } else if (argv != NULL && argv[1] != NULL && check_domain(argv[1]) == 0) {
         return 0;
-    else {
+    } else {
         return 1;
     }
 }

@@ -36,9 +36,11 @@ int find_char_in_available_chars(char c) {
 */
 int get_is_valid_chars(char *localport) {
     int flags_length = strlen(localport);
-    int *flags = chars_map_to_ints(find_char_in_available_chars, localport,
-                                   flags_length);
+    int *flags = chars_map_to_ints_with_calloc(find_char_in_available_chars,
+                                               localport, flags_length);
     int summation = int_reduce(add, flags, flags_length);
+    free(flags);
+    flags = NULL;
     if (summation == 0)
         return 0;
     else {
