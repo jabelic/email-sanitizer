@@ -30,6 +30,12 @@ unittest "-dev"
 
 # ===== 総合テスト =====
 
+assert 1 ""
+assert 1 "@"
+assert 1 "email.1@"
+assert 1 "@gmail.com"
+assert 1 "@yahoo.co.jp"
+
 # #Gmailのテスト
 assert 0 "email.1@gmail.com"    #SUCCESS 半角英字、数字、ピリオドを使用できる
 assert 1 "email..1@gmail.com"   #FAIL ピリオドは連続して使用してはいけない
