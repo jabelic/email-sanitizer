@@ -80,10 +80,15 @@ int check_localport_gmail(char *localport) {
 int check_domain(char *mail) {
     int res = 0;
 
-    //文字列をlocalportとdomainに分割
-    // strtokの使用には下記を参照
+    // 文字列をlocalportとdomainに分割
+    // NOTE: strtokの使用には下記を参照
     // https://www.jpcert.or.jp/sc-rules/c-str06-c.html
-    char *copy = (char *)malloc(strlen(mail) + 1);
+    char *copy;
+    // NOTE: 動的メモリ確保の際には例外処理を行う(第12回資料P.9)
+    if ((copy = (char *)malloc(strlen(mail) + 1)) == NULL) {
+        perror("malloc()");
+        exit(1);
+    }
     strcpy(copy, mail);
     char *localport = strtok(copy, "@");
     char *domain = strtok(NULL, "@");
